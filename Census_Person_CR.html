@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>US Census Person Data Digitization (prev next image test)</title>
+
+
+  <!-- DEPENDENCIES -->
+  <link rel="stylesheet" href="http://cfexternals.s3.amazonaws.com/stylesheets/jquery-ui-1.10.1.custom.css">
+  <link rel="stylesheet" href="http://cfexternals.s3.amazonaws.com/stylesheets/jquery.prevnext.css">
+  <link rel="stylesheet" href="http://cfexternals.s3.amazonaws.com/stylesheets/cf_boilerplate.css">
+
+  <!-- Production -->
+  <link rel="stylesheet" href="http://cfexternals.s3.amazonaws.com/census/css/census_person_digitization.css?55a021d1">
+
+  <!-- LOCAL TESTING -->
+  <!-- <link rel="stylesheet" href="../css/census_person_digitization.css"> -->
+  <style type="text/css">
+    #input-image-container {
+      margin-top: 20px;
+      min-height: 75px;
+    }
+    #year, #month {
+      margin-right:5px;
+      padding:5px;
+    }
+    #year_input{
+      width: 35px;
+    }
+    #month_input{
+      width: 45px;
+    }
+    #help_arrow_container {
+      margin-top: 0px;
+    }
+    .bar_wrapper {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="wi_wrap">
+    <div id="wi_inner">
+    <div class="bar_wrapper">
+          <span> Review </span>
+        </div>
+      <div id="header_info" >
+        <div class="floatR">
+          <a id="References_btn" class="btn info" tabindex="704" href="http://bit.ly/census-digitization-guide" target="blank" >Guidelines</a>
+        </div>
+        <h1 >Digitize Age below</h1>
+        <div class="info_line">
+          Age may be written as a whole number (e.g.: 5) or as a fraction (e.g.: 6 1/12). The fraction denotes the months (e.g.: 6 5/12 means 6 years 5 months). Examples: 2 1/12 => 2 year 1 month and  5/12 => 0 year 5 month
+        </div>
+      </div>
+      
+      <div id="input-image-container">
+          <div class="prev_next_image">
+            <ul class="age_img_container">
+              <li id="age_current_image">
+                <img id="age_image" src="">
+              </li>
+            </ul>
+
+            <ul class = "name_img_container" style="display:none;">
+              <li id="name_current_image">
+                <img id="name_image" src="">
+              </li>
+            </ul>
+          </div>
+      </div>
+      <div id="help_arrow_container">
+        <p>
+          <span class= "help_arrow">&#8593;</span> Gender/Race/Age <span class= "help_arrow">&#8593;</span>
+        </p>
+      </div>
+   
+      <div class="error-msg alert alert-error"></div>
+      <div class = "input_fields" style="clear: left">
+        <form id="cf_task_form" >
+          <ul class = "data_field">
+            <li style="display:none;">
+              <div class="field-wrapper">
+                <label for="gender">Gender:</label>
+                <span id ="gender"></span>
+              </div>
+            </li>
+            <li class="markable" id="year">
+              <label for="year">Year</label>
+              <input  class="year short input_field focus_me" id="year_input" name="output[year]"  maxlength= "3"  autocomplete="off"/>
+            </li>
+            <li class="markable" id="month">
+              <label for="month">Month</label>
+              <input  class="month  short input_field" id="month_input" name="output[month]"  maxlength= "2" autocomplete="off"/>
+            </li>
+            <li>
+              <div class="field-wrapper">
+                <div id ="submit_div">
+                  <input id="submit_btn" type="button" class="btn" value="Submit (Press Enter)"/>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </form>
+        
+        <div class="shortcut">
+          <label class="header">HOT KEYS</label>
+          <div id="shortcut_help">
+            <ul id="shortcuts">
+               <li><span class="st_key">Ctrl + I</span><span class="text">Show next/previous image</span></li>
+               <li><span class="st_key">Ctrl + ,</span><span class="text">Fills field with 'Blank' </span></li>
+               <li style="clear:left;"><span class="st_key">Ctrl + Shift + S</span><span class="text">Skip current task</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <!-- /:::::::::::* for QA testing :::::::::::::::*/  -->
+
+<!-- <script src="http://us-census-app2.0.s3.amazonaws.com/qatest/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="http://us-census-app2.0.s3.amazonaws.com/qatest/js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
+<script src="http://us-census-app2.0.s3.amazonaws.com/qatest/js/tipTip.minified.js?123" type="text/javascript"></script>
+<script src="http://us-census-app2.0.s3.amazonaws.com/qatest/js/facebox.js" type="text/javascript"></script>
+<script src="http://us-census-app2.0.s3.amazonaws.com/qatest/js/jquery-caret.js" type="text/javascript"></script>
+<script src="http://us-census-app2.0.s3.amazonaws.com/qatest/js/spellchecker.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://us-census-app2.0.s3.amazonaws.com/qatest/js/javascript_helpers.js?123" type="text/javascript" charset="utf-8"></script>
+<script src="http://us-census-app2.0.s3.amazonaws.com/qatest/js/jquery.cftooltip.js?1232" type="text/javascript"></script>
+<script src="http://us-census-app2.0.s3.amazonaws.com/qatest/js/array_wildcard_search.js?59e90fc" type="text/javascript"></script>
+<script src="http://us-census-app2.0.s3.amazonaws.com/qatest/js/cf-multi-textbox.js?59e90fcde2" type="text/javascript"></script>
+<script src="http://us-census-app2.0.s3.amazonaws.com/qatest/js/jquery.prevnext.js" type="text/javascript"></script>
+<script src="http://us-census-app2.0.s3.amazonaws.com/qatest/js/census_person_digitization.js?083a9f8232" type="text/javascript"></script> -->
+
+
+<!-- /:::::::::::* for production :::::::::::::::*/  -->
+<script src="http://cfexternals.s3.amazonaws.com/census/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="http://cfexternals.s3.amazonaws.com/census/js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
+<script src="http://cfexternals.s3.amazonaws.com/census/js/javascript_helpers.js?123" type="text/javascript" charset="utf-8"></script>
+<script src="http://cfexternals.s3.amazonaws.com/census/js/array_wildcard_search.js?55a021d" type="text/javascript"></script>
+<script src="http://cfexternals.s3.amazonaws.com/census/js/jquery.prevnext.js" type="text/javascript"></script>
+<script src="http://cfexternals.s3.amazonaws.com/census/js/census-person-digitization-age.js?sfjhafhjashj" type="text/javascript"></script>
+
+
+
+<!--/:::::::::::* for local testing :::::::::::::::*/ -->
+<!-- <script src="../js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="../js/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
+<script src="../js/jquery-caret.js" type="text/javascript"></script>
+<script src="../js/spellchecker.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/array_wildcard_search.js" type="text/javascript"></script>
+<script src="../js/jquery.cftooltip.js" type="text/javascript"></script>
+<script src="../js/cf-multi-textbox.js" type="text/javascript"></script>
+<script src="../js/jquery.prevnext.js" type="text/javascript"></script>
+<script src="../js/census_person_digitization.js" type="text/javascript"></script> -->
+
+<script id ="data_container" rel="script" type="text/template"> //type="text/template"
+  window.nextPrevFlag = "age";
+  var name_img_src= "{{name_image_url}}";
+  var age_img_src= "{{age_image_url}}";
+  var decade = "{{decade}}";
+  var gender = "{{gender}}";
+
+  // LOCAL TESTING
+  // var name_img_src="http://cfaccusoft.s3.amazonaws.com/full/2314ac82-47a3-4d34-9d22-9b0e0ed1970e_Name47.jpg";
+  // var age_img_src = "http://cfaccusoft.s3.amazonaws.com/full/2314ac82-47a3-4d34-9d22-9b0e0ed1970e_Age47.jpg";
+  // var decade = "1910";
+  // var gender = "Male";
+
+//to make show the tooltip on major changes to the template
+var template_version = 1;
+
+if (window.localStorage.getItem('person_template_version') != template_version ){
+  //delete the flag for the tooltip so that it shows automatically in the start
+  window.localStorage.removeItem("stop_showing_tooltip_on_focus");
+  //set the template version in the local storage
+  window.localStorage.setItem('person_template_version' , template_version)
+}
+  //convert the gender value
+  var show_gender = "N/A";   //the default value
+  if ( gender.toLowerCase().trim() == "m") show_gender = "Male";
+  if ( gender.toLowerCase().trim() == "f") show_gender = "Female";
+
+  $("#age_image").attr("src" , age_img_src);
+  $("#name_image").attr("src" , name_img_src);
+
+  // initialize the spellchecker plugin in the name fields for AB testing
+  //change the gender value
+  $("#gender").html(show_gender);
+  $.holdReady(false);
+</script>
+</body>
+</html>

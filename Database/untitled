@@ -1,0 +1,22 @@
+ curl http://L7Ha4PxffwmpC9URNyogVHbKybW9M2jI:c31bHUP7De9FRoupC53QheTMFdF2KqPr@cloudfactory.qa/v3/templates/V3AQewb4Wz
+
+
+ require 'HTTParty'
+require 'json'
+url = 'http://cloudfactory.qa/v3/gold_standards'
+input = {
+      "name_image_url"=>"http://cfaccusoft.s3.amazonaws.com/SliceImages/12_May_2013/full_c86c95b5-6d02-4ad7-87ef-6a5a43cedfb3_Name30.jpg",
+      "age_image_url"=>"http://cfaccusoft.s3.amazonaws.com/SliceImages/06_May_2013/full_0ddb71d9-e498-4f4c-a526-6d9118594575_Age28.jpg"
+     }
+expected_output = {"year" =>"1", "month" =>"1", "last_name" => " ", "given_name" => "1"}
+root_output = {"year" =>"1", "month" =>"1", "last_name" => " ", "given_name" => "1"}
+explanation = {"year" => '', "month" => '', "last_name" => '', "given_name" => ''}
+
+ gs_body = [{"input" => input ,"expected_output" => expected_output, "root_output" =>  root_output}]#, "explanation" => explanation}] 
+
+ gs_request = {:job_type_id => 'pDyM8ciPkB', :gold_standards => gs_body.to_json}
+ responses = []
+
+1.upto(1) do
+  response = HTTParty.post(url, :body => gs_request, :basic_auth => {username: 'L7Ha4PxffwmpC9URNyogVHbKybW9M2jI', password: 'c31bHUP7De9FRoupC53QheTMFdF2KqPr'})
+end

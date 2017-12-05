@@ -1,0 +1,8 @@
+alpha_prior_cr_wrong.rb
+alpha_prior_gs.rb
+alpha_prior_gs_cr.rb
+alpha_prior_slow_cr_wrong.rb
+alpha_prior_slow_gs.rb
+alpha_prior_slow_gs_cr.rb
+alpha_prior_slow_wrong_gs.rb
+apha_prior_wrong_gs.rb

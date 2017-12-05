@@ -1,0 +1,32 @@
+development:
+  cp_url: http://cloudfactory.di/users/sign_in
+  cp_user_id: admin@cloudfactory.com
+  cp_password: automation
+  wp_url: http://worker.cloudfactory.di/worker_login
+  wp_user_id: admin@cloudfactory.com
+  wp_password: automation
+
+staging:
+  cp_url: http://stagingrc.cloudfactory.com/users/sign_in
+  cp_user_id: admin@cloudfactory.com
+  cp_password: k@thmandu09
+  wp_url: http://stagingrc.worker.cloudfactory.com/worker_login
+  wp_user_id: admin@cloudfactory.com
+  wp_password: secret
+
+qa:
+  cp_url: http://cloudfactory.qa/users/sign_in
+  cp_user_id: admin@cloudfactory.com
+  cp_password: kathmandu09
+  wp_url: http://worker.cloudfactory.qa
+  wp_user_id: admin@cloudfactory.com
+  wp_password: automation
+
+production:
+  cp_url: client.cloudfactory.com
+  cp_user_id: admin@cloudfactory.com
+  cp_password: automation
+  wp_url: http://worker.cloudfactory
+  wp_user_id: admin@cloudfactory.com
+  wp_password: automation  
+

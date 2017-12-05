@@ -1,0 +1,4 @@
+#setting_up_new_skill.rb
+new_skill_gets_initial_gs.rb
+new_skill_wrong_input_gold_standard.rb
+new_skill_right_input_gold_standard.rb

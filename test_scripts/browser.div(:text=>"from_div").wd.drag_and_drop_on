@@ -1,0 +1,1 @@
+browser.div(:text=>"from_div").wd.drag_and_drop_on(browser.div(:text=>"to_div").wd)  # drag and drop

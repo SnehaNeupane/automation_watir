@@ -1,0 +1,33 @@
+def create_a_worker(first_name="Automation", last_name="1", team=nil)
+  team ||= Team.find_or_create_by(:name => Faker::Company.name, :description => Faker::Company.bs, :sync_hash => Faker::Product.letters(30))
+  unless team.inhouse
+    cloud_seeder = create_a_cloud_seeder
+    team.cloud_seeder = cloud_seeder
+    team.save
+  end
+  role = team.team_leader.present? ? Worker::CLOUD_WORKER : Worker::TEAM_LEADER
+  #worker = Worker.find_or_initialize_by(:email => "#{Faker::Name.first_name}.#{Faker::Name.last_name}@cloudfactory.com").
+  worker= Worker.find_or_initialize_by(:email => "#{first_name}.#{last_name}@cloudfactory.com").
+  tap do |worker|
+    worker.first_name = first_name
+    worker.middle_name = ""
+    worker.last_name = last_name
+    worker.role = role
+    worker.password = "secret"
+    worker.password_confirmation = "secret"
+    worker.inhouse = team.inhouse
+    worker.team = team
+    worker.save
+  end
+  profile = Profile.new(:gender => "Male", :education => "+2", :campus => "HSEB", :work_space => "Home", :contact_no => "1234567890", :date_of_birth => "1111-11-11")
+  worker.profile = profile
+  worker.profile.save(:validate => false)
+  if worker.save(:validate => false)
+    "#{worker.id} - #{worker.full_name}"
+  end
+end
+
+
+(101..120).each do |count|
+  create_a_worker(first_name="Automation", last_name=count.to_s)
+end

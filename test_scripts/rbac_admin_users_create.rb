@@ -1,0 +1,223 @@
+Dir[File.join(File.expand_path('../../', __FILE__),'Data/*.rb')].each {|file| require (file)}
+# #########################Fetching Data########################
+
+env_setting1= Util.read_data_from_file('DataforRbac')
+env_setting= env_setting1['assigning_and_retracting_roles_by_admin']
+
+#url = env_setting['url_admin']
+
+url = CONFIG['cp_url']
+username_admin = CONFIG['cp_user_id']
+password_admin = CONFIG['cp_password']
+prod_usr_name = env_setting['prod_usr_name']
+prod_usr_pass = env_setting['prod_usr_pass']
+prodskill = env_setting['prodskill']
+add_skill = env_setting['add_skill']
+init_gs = env_setting['init_gs']
+algorithm = env_setting['algorithm']
+production_line = env_setting['production_line']
+worker_id = env_setting['worker_id']
+production_lines = env_setting['production_lines']
+transaction_id = env_setting['transaction_id']
+developer_id = env_setting['developer_id']
+station_id = env_setting['station_id']
+production_lines_id = env_setting['production_lines_id']
+production_lines_id_not_exist = env_setting['production_lines_id_not_exist']
+reward = env_setting['reward']
+
+username_admin = env_setting['username_admin']
+password_admin = env_setting['password_admin']
+account_name = env_setting['account_name']
+usr = env_setting['usr']
+account_exist = env_setting['account_exist']
+account_not_exist = env_setting['account_not_exist']
+
+view_users = env_setting['view_users'] 
+create_users = env_setting['create_users']
+edit_users = env_setting['edit_users']
+delete_users = env_setting['delete_users'] 
+view_accounts_all = env_setting['view_accounts_all']
+view_accounts_assigned = env_setting['view_accounts_assigned']
+create_accounts = env_setting['create_accounts']
+edit_accounts_all = env_setting['edit_accounts_all'] 
+edit_accounts_assigned = env_setting['edit_accounts_assigned']
+delete_accounts_all = env_setting['delete_accounts_all']
+delete_accounts_assigned = env_setting['delete_accounts_assigned'] 
+associate_users_all = env_setting['associate_users_all']
+associate_users_assigned = env_setting['associate_users_assigned']
+manage_roles_and_permissions = env_setting['manage_roles_and_permissions'] 
+view_workers = env_setting['view_workers']
+edit_workers = env_setting['edit_workers']
+assign_edit_worker_skills = env_setting['assign_edit_worker_skills']
+view_skills = env_setting['view_skills'] 
+create_new_skills = env_setting['create_new_skills']
+edit_skills = env_setting['edit_skills']
+upload_workers_or_modify_skills_in_mass = env_setting['upload_workers_or_modify_skills_in_mass']
+access_non_assigned = env_setting['access_non_assigned']
+view_lines = env_setting['view_lines'] 
+create_lines = env_setting['create_lines']
+edit_settings = env_setting['edit_settings']
+delete_lines = env_setting['delete_lines'] 
+view_overview = env_setting['view_overview']
+view_gold_standards = env_setting['view_gold_standards']
+create_gold_standards = env_setting['create_gold_standards']
+view_production_runs = env_setting['view_production_runs'] 
+delete_production_runs = env_setting['delete_production_runs']
+create_production_runs = env_setting['create_production_runs']
+view_production_run_details = env_setting['view_production_run_details']
+view_production_run_results = env_setting['view_production_run_results'] 
+view_reports_all = env_setting['view_reports_all']
+view_reports_assigned = env_setting['view_reports_assigned']
+## selecting and de-selecting checkbox
+browser = Browser.new(url)
+#browser.browser.Puts "I am here "
+browser.fill_input_text_by_name('user[email]', username_admin )
+browser.fill_input_text_by_name('user[password]', password_admin)
+browser.button_click_name('commit')
+browser.click_link_by_href('/admin/roles')
+
+#### selecting and de-selecting checkbox
+browser.checkbox_action(3,'56',view_users)
+
+browser.checkbox_action(3,'57',create_users)# Needs more detailed information regarding this . will sscript later . 
+browser.checkbox_action(3,'58',edit_users)# Needs more detail3d infomation regarding this . will script later . 
+browser.checkbox_action(3,'59',delete_users)
+browser.checkbox_action(3,'61',view_accounts_all)
+browser.checkbox_action(3,'62',view_accounts_assigned)
+
+browser.checkbox_action(3,'63',create_accounts)
+browser.checkbox_action(3,'64',edit_accounts_all)
+browser.checkbox_action(3,'65',edit_accounts_assigned)
+browser.checkbox_action(3,'66',delete_accounts_all)
+browser.checkbox_action(3,'67',delete_accounts_assigned)
+browser.checkbox_action(3,'68',associate_users_all)
+browser.checkbox_action(3,'69',associate_users_assigned)
+browser.checkbox_action(3,'71',manage_roles_and_permissions)
+browser.checkbox_action(3,'73',view_workers)
+browser.checkbox_action(3,'74',edit_workers)
+browser.checkbox_action(3,'75',assign_edit_worker_skills)
+browser.checkbox_action(3,'77',view_skills)
+browser.checkbox_action(3,'78',create_new_skills)
+browser.checkbox_action(3,'79',edit_skills)
+browser.checkbox_action(3,'80',upload_workers_or_modify_skills_in_mass)
+browser.checkbox_action(3,'82',access_non_assigned)
+browser.checkbox_action(3,'83',view_lines)
+browser.checkbox_action(3,'84',create_lines)
+browser.checkbox_action(3,'85',edit_settings)
+browser.checkbox_action(3,'86',delete_lines)
+browser.checkbox_action(3,'87',view_overview)
+browser.checkbox_action(3,'88',view_gold_standards)
+browser.checkbox_action(3,'89',create_gold_standards)
+browser.checkbox_action(3,'90',view_production_runs)
+browser.checkbox_action(3,'91',create_production_runs)
+browser.checkbox_action(3,'92',delete_production_runs)
+browser.checkbox_action(3,'93',view_production_run_details)
+browser.checkbox_action(3,'94',view_production_run_results)
+browser.checkbox_action(3,'96',view_reports_all)
+browser.checkbox_action(3,'97',view_reports_assigned)
+
+
+
+browser.click_text_field_user('/admin/roles/edit_permissions','/html/body/div[3]/aside[2]/section[2]/section/div/div/form/div[2]/div/input')
+
+ # browser.click_link_by_text('admin@cloudfactory.com')
+ # browser.click_link_by_text('Logout')
+
+browser.close
+
+#url = env_setting['url_admin']
+
+url = CONFIG['cp_url']
+username_admin = CONFIG['cp_user_id']
+password_admin = CONFIG['cp_password']
+view_users = env_setting['view_users'] 
+create_users = env_setting['create_users']
+edit_users = env_setting['edit_users']
+delete_users = env_setting['delete_users'] 
+prod_usr_name = env_setting['prod_usr_name']
+prod_usr_pass = env_setting['prod_usr_pass']  
+usr = env_setting['usr']
+
+browser = Browser.new(url)
+browser.fill_input_text_by_name('user[email]', username_admin )
+browser.fill_input_text_by_name('user[password]', password_admin)
+browser.button_click_name('commit')
+browser.click_link_by_href('/admin/roles')
+
+browser.checkbox_action(3,'56',view_users)
+browser.checkbox_action(3,'57',create_users)
+browser.checkbox_action(3,'58',edit_users)
+browser.checkbox_action(3,'59',delete_users)
+
+browser.click_text_field_user('/admin/roles/edit_permissions','/html/body/div[3]/aside[2]/section[2]/section/div/div/form/div[2]/div/input')
+
+ browser.click_link_by_text('admin@cloudfactory.com')
+ browser.click_link_by_text('Logout')
+
+browser.close
+
+###########################Create Users#####################################
+
+if create_users == 'set'
+
+    if view_users== 'clear'
+      browser.Puts "View Users check box is not checked in #{prod_usr_name} is not able to View Users so no new users can be created  \e[0;32m'Passed'\e[0m"
+      Assertions.assertequal(true,true, "View Users check box is not checked in #{prod_usr_name} is not able to View Users so no new users can be created Passed")
+      browser.close
+    else 
+      browser = Browser.new(url)
+      browser.fill_input_text_by_name('user[email]', prod_usr_name )
+      browser.fill_input_text_by_name('user[password]', prod_usr_pass)
+      browser.button_click_name('commit') 
+      
+      browser.click_link_by_href('/admin/users')
+ 
+      flag =  browser.find_link_by_text('Create A User').exists? 
+      sleep 10
+        if flag
+          browser.Puts "#{prod_usr_name} is able to view Create a user button \e[0;32m'Passed'\e[0m"
+          Assertions.assertequal(true,true, "#{prod_usr_name} is able to view Create a user button, Passed")
+        else
+          browser.Puts "#{prod_usr_name} is not able to view Create a user button \e[0;31m'Failed'\e[0m"
+          Assertions.assertequal(true,false, "#{prod_usr_name} is not able to view Create a user button, Failed") 
+        end
+
+        browser.click_link_by_href('/admin/users')
+        browser.click_link_by_text('Create A User')
+        browser.fill_input_text_by_name('email', '1@prd.com')
+        browser.check_checkbox("1")
+        #browser.click_text_field_user('/admin/users','//*[@id="new_user_tmp"]/form/p[4]/input')
+        #browser.click_text_field_user('/admin/users','//*[@id="new_user_tmp"]/form/p[5]/input') # changed the 4 to 5 as this has changed to 5
+        browser.click_text_field_user('/admin/users','//*[@id="create_user_btn"]')
+        browser.Puts " #{prod_usr_name} is able to  Create a desired roles's User \e[0;32m'Passed'\e[0m"
+        Assertions.assertequal(true,true, "#{prod_usr_name} is able to Create a desired roles's User, Passed")
+    end
+
+browser.close
+
+elsif create_users == 'clear'
+
+    if view_users== 'clear'
+      browser.Puts "View Users check box is not checked in #{prod_usr_name} is not able to View Users so no new users can be created  \e[0;32m'Passed'\e[0m"
+      Assertions.assertequal(true,true, "View Users check box is not checked in #{prod_usr_name} is not able to View Users so no new users can be created Passed")
+      browser.close
+    else 
+      browser = Browser.new(url)
+      browser.fill_input_text_by_name('user[email]', prod_usr_name )
+      browser.fill_input_text_by_name('user[password]', prod_usr_pass)
+      browser.button_click_name('commit')   
+    
+      sleep 1
+      flag =  browser.find_link_by_href('/admin/workers/new').exists?     #returns a Boolen value True or False
+        if flag
+            browser.Puts "Create_users check box is not checked in  #{prod_usr_name} is able to view Create a user button \e[0;31m'Failed'\e[0m"
+            Assertions.assertequal(true,true, "Create_users check box is not checked in  #{prod_usr_name} is able to view Create a user button, Passed")
+        else
+            browser.Puts "Create_users check box is not checked in  #{prod_usr_name} is not able to view Create a user button \e[0;32m'Passed'\e[0m"
+            Assertions.assertequal(true,false, "Create_users check box is not checked in  #{prod_usr_name} is not able to view Create a user button, Failed")
+        end
+    end
+end
+
+browser.close
+
